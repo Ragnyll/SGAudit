@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from snippets.models import *
+from auditor.models import *
 
 
 class TeamSerializer(serializers.ModelSerializer):
