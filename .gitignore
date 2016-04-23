@@ -1,0 +1,23 @@
+# Python compiled files
+*.pyc
+
+# Emacs files
+*~
+\#*\#
+auto-save-list
+.\#*
+
+# Mac files
+*.DS_Store
+
+# Migrations
+fridgefiller/*/migrations/
+
+fridgefiller/*/fixtures/*.d
+
+# SQLite DB
+fridgefiller/*.sqlite3
+*.sqlite3
+
+#Secrets
+secret.py
