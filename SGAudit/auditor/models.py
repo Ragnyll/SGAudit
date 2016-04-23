@@ -14,3 +14,12 @@ class Member(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+class Alias(models.Model):
+    email = CharField(max_length=64, default="")
+    # used for when a Member's have a bunch of different credentials for a bunch of different services
+    service_name = CharField(max_length=64, default="")
+    username = CharField(max_length=64, default="")
+
+    def __str__(self):
+        return str(self.username)
