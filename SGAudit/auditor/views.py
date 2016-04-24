@@ -23,4 +23,17 @@ def team_list(request):
         teams = Team.objects.all()
         serializer = TeamSerializer(teams, many=True)
         return JSONResponse(serializer.data)
-    
+
+@csrf_exempt
+def team_detail(request, pk):
+    """
+    Retrieve a team.
+    """
+    try:
+        team = Team.objects.get(id=pk)
+    except Team.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = TeamSerializer(team)
+        return JSONResponse(team.data)
