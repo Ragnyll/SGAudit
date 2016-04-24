@@ -5,7 +5,7 @@ from auditor.models import *
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
-        fields = ('name', 'members','services_used')
+        fields = ('id', 'name', 'members','services_used')
 
 class MemberSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,7 +15,7 @@ class MemberSerializer(serializers.ModelSerializer):
 class AliasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alias
-        fields = ('email', 'service_name', 'username', 'from_Member')
+        fields = ('id', 'email', 'service_name', 'username', 'from_Member')
 
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,4 +25,4 @@ class ServiceSerializer(serializers.ModelSerializer):
 class EndpointSerializer(serializers.ModelSerializer):
     class Meta:
         model = Endpoint
-        fields = ('name', 'url', 'from_Service')
+        fields = ('id', 'name', 'url', 'from_Service')
