@@ -21,14 +21,6 @@ def team_list(request):
     """
     if request.method == 'GET':
         teams = Team.objects.all()
-        serializer = TeamSerializer(snippets, many=True)
+        serializer = TeamSerializer(teams, many=True)
         return JSONResponse(serializer.data)
-    """
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = SnippetSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JSONResponse(serializer.data, status=201)
-        return JSONResponse(serializer.errors, status=400)
-    """
+    
