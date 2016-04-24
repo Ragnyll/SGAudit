@@ -95,7 +95,7 @@ def service_detail(request, pk):
 def endpoints_list(request):
     if request.method == 'GET':
         endpoints = Endpoint.objects.all()
-        serializer = ServiceSerializer(endpoints, many=True)
+        serializer = EndpointSerializer(endpoints, many=True)
         return JSONResponse(serializer.data)
 
 @csrf_exempt
