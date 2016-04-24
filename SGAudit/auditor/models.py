@@ -3,6 +3,7 @@ from django.db import models
 class Team(models.Model):
     name = models.CharField(max_length=32, default="")
     members = models.ManyToManyField('Member')
+    services_used = models.ManyToManyField('Service')
 
     def __str__(self):
         return str(self.name)
@@ -13,6 +14,7 @@ class Member(models.Model):
     is_competitor = models.BooleanField(default=True)
     default_email = models.CharField(max_length=64, default="")
     on_teams = models.ManyToManyField('Team')
+    services_used = models.ManyToManyField('Service')
 
     def __str__(self):
         return str(self.name)

@@ -16,24 +16,21 @@ class JSONResponse(HttpResponse):
 
 @csrf_exempt
 def team_list(request):
-    """
-    List all code teams, or create a new snippet.
-    """
     if request.method == 'GET':
         teams = Team.objects.all()
         serializer = TeamSerializer(teams, many=True)
         return JSONResponse(serializer.data)
 
 @csrf_exempt
-def team_detail(request, pk):
-    """
-    Retrieve a team.
-    """
-    try:
-        team = Team.objects.get(id=pk)
-    except Team.DoesNotExist:
-        return HttpResponse(status=404)
-
+def member_list(request):
     if request.method == 'GET':
-        serializer = TeamSerializer(team)
-        return JSONResponse(team.data)
+        members = Member.objects.all()
+        serializer = MemberSerializer(members, many=True)
+        return JSONResponse(serializer.data)
+
+@csrf_exempt
+def alias_list(request):
+    if request.method == 'GET':
+        aliases = Alias.objects.all()
+        serializer = AliasSerializer(aliases, many=True)
+        return JSONResponse(serializer.data)
