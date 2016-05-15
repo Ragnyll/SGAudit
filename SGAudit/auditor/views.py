@@ -25,7 +25,7 @@ def team_list(request):
         return JSONResponse(serializer.data)
 
     elif request.method == 'POST':
-        serializer = TeamSerializer(data=request.data)
+        serializer = TeamSerializer(data=request.data, many=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

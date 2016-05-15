@@ -1,0 +1,2 @@
+curl -H "Content-Type: application/json" -X POST -d '[{"id":3,"name":"newTeam","members":[1, 2],"services_used":[1]}]' 127.0.0.1:8000/teams/ > error.html
+
