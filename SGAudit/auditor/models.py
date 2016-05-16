@@ -1,9 +1,11 @@
 from django.db import models
 
+from datetime import datetime
+
 class Team(models.Model):
     name = models.CharField(max_length=32, default="")
-    members = models.ManyToManyField('Member')
-    services_used = models.ManyToManyField('Service')
+    members = models.ManyToManyField('Member', blank=True)
+    services_used = models.ManyToManyField('Service', blank=True)
 
     def __str__(self):
         return str(self.name)
@@ -13,8 +15,8 @@ class Member(models.Model):
     # default is_competitor to True to prevent access off the bat
     is_competitor = models.BooleanField(default=True)
     default_email = models.CharField(max_length=64, default="")
-    on_teams = models.ManyToManyField('Team')
-    services_used = models.ManyToManyField('Service')
+    on_teams = models.ManyToManyField('Team', blank=True)
+    services_used = models.ManyToManyField('Service', blank=True)
 
     def __str__(self):
         return str(self.name)
@@ -45,3 +47,13 @@ class Endpoint(models.Model):
 
     def __str__(self):
         return(self.name)
+
+class Meeting(models.Model):
+    date = models.DateTimeField(auto_now_add=True)
+    # duration is in minutes
+    duration = models.IntegerField(default=0)
+    members_attending = models.ManyToManyField('Member', blank=True)
+
+
+    def __str__(self):
+        return(self.date)

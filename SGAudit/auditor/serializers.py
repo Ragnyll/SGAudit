@@ -26,3 +26,8 @@ class EndpointSerializer(serializers.ModelSerializer):
     class Meta:
         model = Endpoint
         fields = ('id', 'name', 'url', 'from_Service')
+
+class MeetingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Meeting
+        fields = ('id', 'date','duration', 'members_attending')

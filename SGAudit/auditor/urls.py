@@ -17,6 +17,9 @@ urlpatterns = [
 
     url(r'^endpoints/$', views.endpoints_list.as_view()),
     url(r'^endpoints/(?P<pk>[0-9]+)/$', views.endpoint_detail.as_view()),
+
+    url(r'^meetings/$', views.meetings_list.as_view()),
+    url(r'^meetings/(?P<pk>[0-9]+)/$', views.meeting_detail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

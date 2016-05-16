@@ -41,3 +41,11 @@ class endpoints_list(generics.ListCreateAPIView):
 class endpoint_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Endpoint.objects.all()
     serializer_class = EndpointSerializer
+
+class meetings_list(generics.ListCreateAPIView):
+    queryset = Meeting.objects.all()
+    serializer_class = MeetingSerializer
+
+class meeting_detail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Meeting.objects.all()
+    serializer_class = MeetingSerializer
