@@ -11,13 +11,18 @@ auto-save-list
 *.DS_Store
 
 # Migrations
-fridgefiller/*/migrations/
-
-fridgefiller/*/fixtures/*.d
+SGAudit/*/migrations/
+SGAudit/*/fixtures/*.d
 
 # SQLite DB
-fridgefiller/*.sqlite3
+SGAudit/*.sqlite3
 *.sqlite3
 
-#Secrets
-secret.py
+# Python VM
+.Python
+bin/
+lib/
+include/
+
+# pyc files
+SGAudit/**/*.pyc

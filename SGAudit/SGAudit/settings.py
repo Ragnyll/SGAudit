@@ -131,5 +131,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # WhiteListed CORS domains: all allowed
-CORS_ORIGIN_WHITELIST = ()
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8001'
+)
 CORS_ALLOW_CREDENTIALS = True
