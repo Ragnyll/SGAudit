@@ -2,21 +2,22 @@ var MEMBER_TEMPLATE = {name: "", email: "", errors: null}
 
 var state = {};
 
+$(document).ready(function () {
+    var $users = $('#users');
 
-var $users = $('#users');
-
-// GET request example -- get list of all members
-$.ajax({
-    type: 'GET',
-    url: 'http://localhost:8000/members/',
-    dataType:'json',
-    success: function(data){
-        // data is list of member
-        // list out each member in the list
-        for(i = 0; i < data.length; i++) {
-            $users.append(data[i]['id'] + ': ' + data[i]['name'] + "<br>")
+    // GET request example -- get list of all members
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8000/members/',
+        dataType:'json',
+        success: function(data){
+            // data is list of member
+            // list out each member in the list
+            for(i = 0; i < data.length; i++) {
+                $users.append(data[i]['id'] + ': ' + data[i]['name'] + "<br>")
+            }
         }
-    }
+    });
 });
 
 // Make the given changes to the state and perform any required housekeeping
@@ -38,6 +39,7 @@ function setState(changes) {
 
           // Set initial data
           setState({
+
             contacts: [
               //null
             ],
