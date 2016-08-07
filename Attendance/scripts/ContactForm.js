@@ -41,6 +41,7 @@ var ContactForm = React.createClass({
           noValidate: true,
           id: 'new_default_email'
         }),
+        React.createElement('p', {}, 'Do you plan on competing in MegaMiner?' ),
         React.createElement('input', {
           type: 'checkbox',
           defaultChecked: true,
