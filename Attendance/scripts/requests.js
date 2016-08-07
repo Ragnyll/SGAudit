@@ -15,16 +15,14 @@ $(document).ready(function () {
         }
     });
 
-    // PUT request example -- create new member
-    // TODO: authentication thru DRF
-
     var newName = $('#new_name').val()
+    var new_default_email = $('#new_default_email').val()
 
-    var testUser = {
+    var newUser = {
         //id: id will auto-increment on create, no need to make one
         name: newName,
         is_competitor: true,
-        default_email: 'jon@jon.jon',
+        default_email: new_default_email,
         on_teams: [],
         services_used: []
     }
@@ -33,7 +31,7 @@ $(document).ready(function () {
         type: 'POST',
         url: 'http://127.0.0.1:8000/members/',
         dataType:'json',
-        data: testUser,
+        data: newUser,
         success: function(data){
             console.log(data)
         }

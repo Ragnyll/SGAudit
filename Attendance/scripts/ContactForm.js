@@ -1,4 +1,4 @@
-var CreateMember = React.createClass({
+var ContactForm = React.createClass({
   propTypes: {
     value: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
@@ -8,12 +8,18 @@ var CreateMember = React.createClass({
   onNameInput: function(e) {
     this.props.onChange(Object.assign({}, this.props.value, {name: e.target.value}))
   },
+
   onEmailInput: function(e) {
     this.props.onChange(Object.assign({}, this.props.value, {email: e.target.value}))
   },
+
+  onDescriptionInput: function(e) {
+    this.props.onChange(Object.assign({}, this.props.value, {description: e.target.value}))
+  },
+
   onSubmit: function(e) {
-    e.preventDefault();
-    this.props.onSubmit();
+    e.preventDefault()
+    this.props.onSubmit()
   },
 
   render: function() {
@@ -28,6 +34,7 @@ var CreateMember = React.createClass({
           onInput: this.onNameInput,
           value: this.props.value.name,
           ref: 'name',
+          id: 'new_name'
         }),
         React.createElement('input', {
           type: 'email',
@@ -36,9 +43,15 @@ var CreateMember = React.createClass({
           onInput: this.onEmailInput,
           value: this.props.value.email,
           noValidate: true,
+          id: 'new_default_email'
+        }),
+        React.createElement('textarea', {
+          placeholder: 'Description',
+          onInput: this.onDescriptionInput,
+          value: this.props.value.description,
         }),
         React.createElement('button', {type: 'submit'}, "Add Contact")
       )
     )
   },
-})
+});
