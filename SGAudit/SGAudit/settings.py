@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # installed frameworks
     'rest_framework',
+    'corsheaders',
 
     # my installed apps
     'auditor',
@@ -54,6 +55,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # additional MIDDLEWARE_CLASSES
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'SGAudit.urls'
@@ -125,3 +129,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# WhiteListed CORS domains: all allowed
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8001'
+)
+CORS_ALLOW_CREDENTIALS = True
