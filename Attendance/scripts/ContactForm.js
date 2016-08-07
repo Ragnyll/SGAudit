@@ -13,10 +13,6 @@ var ContactForm = React.createClass({
     this.props.onChange(Object.assign({}, this.props.value, {email: e.target.value}))
   },
 
-  onDescriptionInput: function(e) {
-    this.props.onChange(Object.assign({}, this.props.value, {description: e.target.value}))
-  },
-
   onSubmit: function(e) {
     e.preventDefault()
     this.props.onSubmit()
@@ -30,7 +26,7 @@ var ContactForm = React.createClass({
         React.createElement('input', {
           type: 'text',
           className: errors.name && 'ContactForm-error',
-          placeholder: 'Name (required)',
+          placeholder: 'Name',
           onInput: this.onNameInput,
           value: this.props.value.name,
           ref: 'name',
@@ -39,16 +35,18 @@ var ContactForm = React.createClass({
         React.createElement('input', {
           type: 'email',
           className: errors.email && 'ContactForm-error',
-          placeholder: 'Email (required)',
+          placeholder: 'Email',
           onInput: this.onEmailInput,
           value: this.props.value.email,
           noValidate: true,
           id: 'new_default_email'
         }),
-        React.createElement('textarea', {
-          placeholder: 'Description',
+        React.createElement('input', {
+          type: 'checkbox',
+          defaultChecked: true,
           onInput: this.onDescriptionInput,
           value: this.props.value.description,
+          id: 'new_is_competitor'
         }),
         React.createElement('button', {type: 'submit'}, "Add Contact")
       )

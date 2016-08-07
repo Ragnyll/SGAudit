@@ -63,9 +63,11 @@ function submitNewContact() {
 
   var newName = $('#new_name').val()
   var new_default_email = $('#new_default_email').val()
-
+  var new_is_competitor = $('#new_is_competitor').val()
+  console.log(new_is_competitor);
+  
   var newUser = {
-      //id: id will auto-increment on create, no need to make one
+      //id will auto-increment on create, no need to make one
       name: newName,
       is_competitor: true,
       default_email: new_default_email,
