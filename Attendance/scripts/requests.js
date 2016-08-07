@@ -21,7 +21,7 @@ $(document).ready(function () {
     var newName = $('#new_name').val()
 
     var testUser = {
-        //id: 100,
+        //id: id will auto-increment on create, no need to make one
         name: newName,
         is_competitor: true,
         default_email: 'jon@jon.jon',

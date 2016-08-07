@@ -5,11 +5,35 @@
     <title>Siggame Users</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="./scripts/requests.js"></script>
-    <!--<link type="text/css" rel="stylesheet" href="style.css">-->
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+   <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+   <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
   </head>
 
   <body>
-    <textarea id="new_name">jkasghkedfgka</textarea>
+    <div id="example"></div>
+
+    <script type="text/babel">
+      var HelloWorld = React.createClass({
+        render: function() {
+          return (
+            <p>
+              Hello, <input type="text" placeholder="Your name here" />!
+              It is {this.props.date.toTimeString()}
+            </p>
+          );
+        }
+      });
+
+      setInterval(function() {
+        ReactDOM.render(
+          <HelloWorld date={new Date()} />,
+          document.getElementById('example')
+        );
+      }, 500);
+    </script>
+
+    <textarea id="new_name"></textarea>
 
     <div id="users">
       <h1>Siggame Users</h1>
