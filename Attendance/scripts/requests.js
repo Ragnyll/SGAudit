@@ -14,7 +14,7 @@ $(document).ready(function () {
             }
         }
     });
-
+    /*
     var newName = $('#new_name').val()
     var new_default_email = $('#new_default_email').val()
 
@@ -36,4 +36,5 @@ $(document).ready(function () {
             console.log(data)
         }
     });
+    */
 });
