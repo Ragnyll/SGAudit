@@ -14,23 +14,39 @@
     <div id="example"></div>
 
     <script type="text/babel">
-      var HelloWorld = React.createClass({
+      var Avatar = React.createClass({
         render: function() {
           return (
-            <p>
-              Hello, <input type="text" placeholder="Your name here" />!
-              It is {this.props.date.toTimeString()}
-            </p>
+            <div>
+              <PagePic pagename={this.props.pagename} />
+              <PageLink pagename={this.props.pagename} />
+            </div>
           );
         }
       });
 
-      setInterval(function() {
-        ReactDOM.render(
-          <HelloWorld date={new Date()} />,
+      var PagePic = React.createClass({
+        render: function() {
+          return (
+            <img src={'https://graph.facebook.com/' + this.props.pagename + '/picture'} />
+          );
+        }
+      });
+
+      var PageLink = React.createClass({
+        render: function() {
+          return (
+            <a href={'https://www.facebook.com/' + this.props.pagename}>
+            {this.props.pagename}
+            </a>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <Avatar pagename="Engineering" />,
           document.getElementById('example')
         );
-      }, 500);
     </script>
 
     <textarea id="new_name"></textarea>
