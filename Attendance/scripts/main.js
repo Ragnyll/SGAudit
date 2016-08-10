@@ -25,41 +25,28 @@ function setState(changes) {
   Object.assign(state, changes);
 
   ReactDOM.render(
-    React.createElement(ContactsView, Object.assign({}, state, {
-      onNewContactChange: updateNewContact,
-      onNewContactSubmit: submitNewContact,
+    React.createElement(MembersView, Object.assign({}, state, {
+      onNewMemberChange: updateNewMember,
+      onNewMemberSubmit: submitNewMember,
     })),
     document.getElementById('signup')
   );
 }
 
 
+setState({
+  members: [
+      //null
+  ],
+  newMember: Object.assign({}, MEMBER_TEMPLATE),
+});
 
-          // THIS WILL ONLY BE USED FOR DEBUGGING PURPOSES
+function updateNewMember(member) {
+  setState({ newMember: member });
+}
 
-          // Set initial data
-          setState({
-
-            contacts: [
-              //null
-            ],
-            newContact: Object.assign({}, MEMBER_TEMPLATE),
-          });
-
-
-
-          /*
-           * Actions
-           */
-
-
-          function updateNewContact(contact) {
-            setState({ newContact: contact });
-          }
-
-
-function submitNewContact() {
-  var contact = Object.assign({}, state.newContact, {key: state.contacts.length + 1, errors: {}});
+function submitNewMember() {
+  var member = Object.assign({}, state.newMember, {key: state.members.length + 1, errors: {}});
 
   var newName = $('#new_name').val()
   var new_default_email = $('#new_default_email').val()
@@ -86,11 +73,11 @@ function submitNewContact() {
   });
 
   setState(
-    Object.keys(contact.errors).length === 0
+    Object.keys(member.errors).length === 0
     ? {
-        newContact: Object.assign({}, MEMBER_TEMPLATE),
-        contacts: state.contacts.slice(0).concat(contact),
+        newMember: Object.assign({}, MEMBER_TEMPLATE),
+        members: state.members.slice(0).concat(member),
       }
-    : { newContact: contact }
+    : { newMember: member }
   )
 }

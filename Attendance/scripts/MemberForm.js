@@ -1,4 +1,4 @@
-var ContactForm = React.createClass({
+var NewMemberForm = React.createClass({
   propTypes: {
     value: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
@@ -22,10 +22,10 @@ var ContactForm = React.createClass({
     var errors = this.props.value.errors || {}
 
     return (
-      React.createElement('form', {onSubmit: this.onSubmit, className: 'ContactForm', noValidate: true},
+      React.createElement('form', {onSubmit: this.onSubmit, className: 'NewMemberForm', noValidate: true},
         React.createElement('input', {
           type: 'text',
-          className: errors.name && 'ContactForm-error',
+          className: errors.name && 'NewMemberForm-error',
           placeholder: 'Name',
           onInput: this.onNameInput,
           value: this.props.value.name,
@@ -34,7 +34,7 @@ var ContactForm = React.createClass({
         }),
         React.createElement('input', {
           type: 'email',
-          className: errors.email && 'ContactForm-error',
+          className: errors.email && 'NewMemberForm-error',
           placeholder: 'Email',
           onInput: this.onEmailInput,
           value: this.props.value.email,
@@ -49,7 +49,7 @@ var ContactForm = React.createClass({
           value: this.props.value.description,
           id: 'new_is_competitor'
         }),
-        React.createElement('button', {type: 'submit'}, "Add Contact")
+        React.createElement('button', {type: 'submit'}, "Sign Up")
       )
     )
   },
