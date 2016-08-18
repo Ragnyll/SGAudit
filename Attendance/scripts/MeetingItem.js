@@ -1,4 +1,4 @@
-var MemberItem = React.createClass({
+var MeetingItem = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     email: React.PropTypes.string.isRequired,
@@ -7,10 +7,10 @@ var MemberItem = React.createClass({
 
   render: function() {
     return (
-      React.createElement('div', {className: 'MemberItem'},
-        React.createElement('div', {className: 'MemberItem-name'}, this.props.name),
-        React.createElement('div', {className: 'MemberItem-email'}, this.props.email),
-        React.createElement('div', {className: 'MemberItem-description'}, this.props.description)
+      React.createElement('div', {className: 'MeetingItem'},
+        React.createElement('div', {className: 'MeetingItem-name'}, this.props.name),
+        React.createElement('div', {className: 'MeetingItem-email'}, this.props.email),
+        React.createElement('div', {className: 'MeetingItem-description'}, this.props.description)
       )
     )
   },

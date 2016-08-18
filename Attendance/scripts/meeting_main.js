@@ -5,7 +5,7 @@ var state = {};
 $(document).ready(function () {
     var $meetings = $('#meetings');
 
-    // GET request example -- get list of all members
+    // GET request example -- get list of all meetings
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8000/meetings/',
@@ -25,9 +25,9 @@ function setState(changes) {
   Object.assign(state, changes);
 
   ReactDOM.render(
-    React.createElement(MembersView, Object.assign({}, state, {
-      onNewMemberChange: updateNewMember,
-      onNewMemberSubmit: submitNewMember,
+    React.createElement(MeetingsView, Object.assign({}, state, {
+      onNewMeetingChange: updateNewMeeting,
+      onNewMeetingSubmit: submitNewMeeting,
     })),
     document.getElementById('signup')
   );
@@ -35,18 +35,18 @@ function setState(changes) {
 
 
 setState({
-  members: [
+  meetings: [
       //null
   ],
-  newMember: Object.assign({}, MEMBER_TEMPLATE),
+  newMeeting: Object.assign({}, MEMBER_TEMPLATE),
 });
 
-function updateNewMember(member) {
-  setState({ newMember: member });
+function updateNewMeeting(meeting) {
+  setState({ newMeeting: meeting });
 }
 
-function submitNewMember() {
-  var member = Object.assign({}, state.newMember, {key: state.members.length + 1, errors: {}});
+function submitNewMeeting() {
+  var meeting = Object.assign({}, state.newMeeting, {key: state.meetings.length + 1, errors: {}});
 
   var newName = $('#new_name').val()
   var new_default_email = $('#new_default_email').val()
@@ -64,7 +64,7 @@ function submitNewMember() {
 
   $.ajax({
       type: 'POST',
-      url: 'http://127.0.0.1:8000/members/',
+      url: 'http://127.0.0.1:8000/meetings/',
       dataType:'json',
       data: newUser,
       success: function(data){
@@ -73,11 +73,11 @@ function submitNewMember() {
   });
 
   setState(
-    Object.keys(member.errors).length === 0
+    Object.keys(meeting.errors).length === 0
     ? {
-        newMember: Object.assign({}, MEMBER_TEMPLATE),
-        members: state.members.slice(0).concat(member),
+        newMeeting: Object.assign({}, MEMBER_TEMPLATE),
+        meetings: state.meetings.slice(0).concat(meeting),
       }
-    : { newMember: member }
+    : { newMeeting: meeting }
   )
 }
