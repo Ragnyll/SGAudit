@@ -10,7 +10,7 @@ var MeetingsView = React.createClass({
   render: function() {
     return (
       React.createElement('div', {className: 'MeetingView'},
-        React.createElement('h1', {className: 'MeetingView-title'}, "Join as New Meeting"),
+        React.createElement('h1', {className: 'MeetingView-title'}, "Create New Meeting"),
         React.createElement('ul', {className: 'MeetingView-list'},
           this.props.meetings.map(function(meeting) {
             return React.createElement(MeetingItem, meeting)

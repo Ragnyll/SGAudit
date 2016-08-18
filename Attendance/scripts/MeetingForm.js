@@ -1,21 +1,10 @@
 var NewMeetingForm = React.createClass({
   propTypes: {
-    value: React.PropTypes.object.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    onSubmit: React.PropTypes.func.isRequired,
+    duration: React.PropTypes.object.isRequired,
   },
 
-  onNameInput: function(e) {
+  onDurationInput: function(e) {
     this.props.onChange(Object.assign({}, this.props.value, {name: e.target.value}))
-  },
-
-  onEmailInput: function(e) {
-    this.props.onChange(Object.assign({}, this.props.value, {email: e.target.value}))
-  },
-
-  onSubmit: function(e) {
-    e.preventDefault()
-    this.props.onSubmit()
   },
 
   render: function() {
@@ -25,31 +14,13 @@ var NewMeetingForm = React.createClass({
       React.createElement('form', {onSubmit: this.onSubmit, className: 'NewMeetingForm', noValidate: true},
         React.createElement('input', {
           type: 'text',
-          className: errors.name && 'NewMeetingForm-error',
-          placeholder: 'Name',
-          onInput: this.onNameInput,
-          value: this.props.value.name,
-          ref: 'name',
-          id: 'new_name'
+          placeholder: 'duration',
+          onInput: this.onDurationInput,
+          value: this.props.value.duration,
+          ref: 'duration',
+          id: 'new_duration'
         }),
-        React.createElement('input', {
-          type: 'email',
-          className: errors.email && 'NewMeetingForm-error',
-          placeholder: 'Email',
-          onInput: this.onEmailInput,
-          value: this.props.value.email,
-          noValidate: true,
-          id: 'new_default_email'
-        }),
-        React.createElement('p', {}, 'Do you plan on competing in MegaMiner?' ),
-        React.createElement('input', {
-          type: 'checkbox',
-          defaultChecked: true,
-          onInput: this.onDescriptionInput,
-          value: this.props.value.description,
-          id: 'new_is_competitor'
-        }),
-        React.createElement('button', {type: 'submit'}, "Sign Up")
+        React.createElement('button', {type: 'submit'}, "Create")
       )
     )
   },

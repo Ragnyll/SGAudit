@@ -8,7 +8,7 @@ var MeetingItem = React.createClass({
   render: function() {
     return (
       React.createElement('div', {className: 'MeetingItem'},
-        React.createElement('div', {className: 'MeetingItem-name'}, this.props.name),
+        React.createElement('div', {className: 'MeetingItem-duration'}, this.props.duration),
         React.createElement('div', {className: 'MeetingItem-email'}, this.props.email),
         React.createElement('div', {className: 'MeetingItem-description'}, this.props.description)
       )

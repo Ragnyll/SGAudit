@@ -1,4 +1,4 @@
-var MEMBER_TEMPLATE = {name: "", email: "", errors: null}
+var MEETING_TEMPLATE = {duration: "", errors: null}
 
 var state = {};
 
@@ -38,7 +38,7 @@ setState({
   meetings: [
       //null
   ],
-  newMeeting: Object.assign({}, MEMBER_TEMPLATE),
+  newMeeting: Object.assign({}, MEETING_TEMPLATE),
 });
 
 function updateNewMeeting(meeting) {
@@ -46,27 +46,21 @@ function updateNewMeeting(meeting) {
 }
 
 function submitNewMeeting() {
-  var meeting = Object.assign({}, state.newMeeting, {key: state.meetings.length + 1, errors: {}});
+  var newMeeting = Object.assign({}, state.newMeeting, {key: state.meetings.length + 1, errors: {}});
 
-  var newName = $('#new_name').val()
-  var new_default_email = $('#new_default_email').val()
-  var new_is_competitor = document.getElementById('new_is_competitor').checked;
+  var new_duration = $('#new_duration').val();
 
 
-  var newUser = {
+  var newMeeting = {
       //id will auto-increment on create, no need to make one
-      name: newName,
-      is_competitor: new_is_competitor,
-      default_email: new_default_email,
-      on_teams: [],
-      services_used: []
+      duration: new_duration,
   }
 
   $.ajax({
       type: 'POST',
       url: 'http://127.0.0.1:8000/meetings/',
       dataType:'json',
-      data: newUser,
+      data: newMeeting,
       success: function(data){
           console.log(data)
       }
@@ -75,7 +69,7 @@ function submitNewMeeting() {
   setState(
     Object.keys(meeting.errors).length === 0
     ? {
-        newMeeting: Object.assign({}, MEMBER_TEMPLATE),
+        newMeeting: Object.assign({}, MEETING_TEMPLATE),
         meetings: state.meetings.slice(0).concat(meeting),
       }
     : { newMeeting: meeting }
