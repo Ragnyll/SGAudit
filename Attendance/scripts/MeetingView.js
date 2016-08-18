@@ -1,20 +1,24 @@
 
-var MeetingsView = React.createClass({
+var MembersView = React.createClass({
   propTypes: {
-    meetings: React.PropTypes.array.isRequired,
-    newMeeting: React.PropTypes.object.isRequired,
-    onNewMeetingChange: React.PropTypes.func.isRequired,
-    onNewMeetingSubmit: React.PropTypes.func.isRequired,
+    members: React.PropTypes.array.isRequired,
+    newMember: React.PropTypes.object.isRequired,
+    onNewMemberChange: React.PropTypes.func.isRequired,
+    onNewMemberSubmit: React.PropTypes.func.isRequired,
   },
 
   render: function() {
     return (
-      React.createElement('div', {className: 'MeetingView'},
-        React.createElement('h1', {className: 'MeetingView-title'}, "Create New Meeting"),
-        React.createElement(NewMeetingForm, {
-          value: this.props.newMeeting,
-          onChange: this.props.onNewMeetingChange,
-          onSubmit: this.props.onNewMeetingSubmit,
+      React.createElement('div', {className: 'MemberView'},
+        React.createElement('h1', {className: 'MemberView-title'}, "Join as New Member"),
+        React.createElement('ul', {className: 'MemberView-list'},
+          this.props.members.map(function(member) {
+            return React.createElement(MemberItem, member)
+          })),
+        React.createElement(NewMemberForm, {
+          value: this.props.newMember,
+          onChange: this.props.onNewMemberChange,
+          onSubmit: this.props.onNewMemberSubmit,
         })
       )
     )

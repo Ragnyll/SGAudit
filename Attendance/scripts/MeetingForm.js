@@ -1,4 +1,4 @@
-var NewMeetingForm = React.createClass({
+var NewMemberForm = React.createClass({
   propTypes: {
     value: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
@@ -22,10 +22,10 @@ var NewMeetingForm = React.createClass({
     var errors = this.props.value.errors || {}
 
     return (
-      React.createElement('form', {onSubmit: this.onSubmit, className: 'NewMeetingForm', noValidate: true},
+      React.createElement('form', {onSubmit: this.onSubmit, className: 'NewMemberForm', noValidate: true},
         React.createElement('input', {
           type: 'text',
-          className: errors.name && 'NewMeetingForm-error',
+          className: errors.name && 'NewMemberForm-error',
           placeholder: 'Name',
           onInput: this.onNameInput,
           value: this.props.value.name,
@@ -34,7 +34,7 @@ var NewMeetingForm = React.createClass({
         }),
         React.createElement('input', {
           type: 'email',
-          className: errors.email && 'NewMeetingForm-error',
+          className: errors.email && 'NewMemberForm-error',
           placeholder: 'Email',
           onInput: this.onEmailInput,
           value: this.props.value.email,
