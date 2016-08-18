@@ -3,18 +3,18 @@ var MEMBER_TEMPLATE = {name: "", email: "", errors: null}
 var state = {};
 
 $(document).ready(function () {
-    var $users = $('#users');
+    var $meetings = $('#meetings');
 
     // GET request example -- get list of all members
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/members/',
+        url: 'http://localhost:8000/meetings/',
         dataType:'json',
         success: function(data){
-            // data is list of member
-            // list out each member in the list
+            // data is list of meetings
+            // list out each meeting in the list
             for(i = 0; i < data.length; i++) {
-                $users.append(data[i]['id'] + ': ' + data[i]['name'] + "<br>")
+                $meetings.append(data[i]['id'] + ': ' + data[i]['date'] + "<br>")
             }
         }
     });
