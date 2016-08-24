@@ -4,7 +4,7 @@ var NewMeetingForm = React.createClass({
   },
 
   onDurationInput: function(e) {
-    this.props.onChange(Object.assign({}, this.props.value, {name: e.target.value}))
+    this.props.onChange(Object.assign({}, this.props.value, {duration: e.target.value}))
   },
 
   render: function() {
