@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'oauth2_provider',
-    
+
     # my installed apps
     'auditor',
 ]
@@ -142,3 +142,4 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8001'
 )
 CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True

@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('auditor.urls')),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    url('^', include('django.contrib.auth.urls')),
+    url(r'^accounts/login/$', auth_views.login, {'template_name': 'SGAudit/login.html'}),
 ]
