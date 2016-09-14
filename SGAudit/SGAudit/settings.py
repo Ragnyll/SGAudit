@@ -41,10 +41,17 @@ INSTALLED_APPS = [
     # installed frameworks
     'rest_framework',
     'corsheaders',
-    'oauth_provider',
+    'oauth2_provider',
+    
     # my installed apps
     'auditor',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    )
+}
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
