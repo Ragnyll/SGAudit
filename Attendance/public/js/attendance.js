@@ -5,9 +5,6 @@
 //
 // Author: Jon Simington
 // Created: Wed Sep 14 17:30:38 2016 (-0500)
-
-console.log("loaded")
-
 var destination = document.querySelector("#content");
 var { Router,
       Route,
