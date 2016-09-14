@@ -8,11 +8,14 @@ html
     script(src='https://npmcdn.com/react@15.3.0/dist/react.js')
     script(src='https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js')
     script(src='https://npmcdn.com/babel-core@5.8.38/browser.min.js')
+    script(src="https://npmcdn.com/react-router/umd/ReactRouter.min.js")
 
     link(rel='stylesheet', type='text/css', href='../public/css/style.css')
     link(href='https://fonts.googleapis.com/css?family=Roboto:400,300,500', rel='stylesheet', type='text/css')
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     // Compiled and minified CSS
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
     // Compiled and minified JavaScript
     script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js')
 
@@ -20,15 +23,12 @@ html
 
   body
     nav.light-blue.lighten-1(role='navigation')
-      .nav-wrapper.container
-        a#logo-container.brand-logo(href='#') SIG-Game Attendance
-        ul.right
-          li
-            a(href='/signin') Sign In
+      .nav-wrapper.container.center-align
+        a.brand-logo.center(href='#') SIG-Game Attendance
+    br
 
-    .container
-      div#content
-        block content
+    div.children.center-align
+      block content
 
     footer.page-footer.orange
       .container

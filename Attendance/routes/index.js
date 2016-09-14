@@ -7,11 +7,7 @@ var MuiThemeProvider = require('material-ui/styles/MuiThemeProvider');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log("HOME")
+    res.render("attendance")
 });
-
-router.get('/members/', function(req, res, next) {
-    res.render('members.jade')
-})
 
 module.exports = router;

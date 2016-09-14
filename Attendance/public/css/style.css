@@ -52,8 +52,8 @@ nav {
     padding: 8px 24px;
 }
 
-.ContactForm> input,
-.ContactForm> textarea {
+.ContactForm>input,
+.ContactForm>textarea {
     display: block;
     width: 240px;
     padding: 4px 8px;
@@ -63,7 +63,7 @@ nav {
     font-size: 14px;
 }
 
-.ContactForm> input.ContactForm-error {
+.ContactForm>input.ContactForm-error {
     border-color: #b30e2f;
 }
 
@@ -83,4 +83,12 @@ footer.page-footer {
     height: 100px;
     width: 100%;
     overflow: hidden;
+}
+
+.children {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 93.7%;
+    /* don't know why, but this keeps it properly centered */
 }
