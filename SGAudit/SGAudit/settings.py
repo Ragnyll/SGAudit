@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     # installed frameworks
     'rest_framework',
     'corsheaders',
-
+    'oauth_provider',
     # my installed apps
     'auditor',
 ]
