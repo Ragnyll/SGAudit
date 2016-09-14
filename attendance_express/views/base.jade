@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    block title
+      title SIG-Game Attendance
+
+    script(type='text/javascript', src='http://code.jquery.com/jquery-1.11.1.min.js')
+    script(type='text/javascript', src='../public/js/requests.js')
+    script(src='https://npmcdn.com/react@15.3.0/dist/react.js')
+    script(src='https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js')
+    script(src='https://npmcdn.com/babel-core@5.8.38/browser.min.js')
+    link(rel='stylesheet', type='text/css', href='../public/css/styles.css')
+    link(href='https://fonts.googleapis.com/css?family=Roboto:400,300,500', rel='stylesheet', type='text/css')
+    // Compiled and minified CSS
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css')
+    // Compiled and minified JavaScript
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js')
+
+    block script
+
+  body
+    nav.light-blue.lighten-1(role='navigation')
+      .nav-wrapper.container
+        a#logo-container.brand-logo(href='#') SIG-Game Attendance
+        ul.right
+          li
+            a(href='/signin') Sign In
+
+    .container
+      div#content
+        block content
+
+    footer.page-footer.orange
+      .container
+        .row
+          .col.s12
+            h5.center-align.muted Made by Missouri S&T ACM SIG-Game with love.
+            br

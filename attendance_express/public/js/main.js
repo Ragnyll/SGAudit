@@ -3,7 +3,7 @@ var MEMBER_TEMPLATE = {name: "", email: "", errors: null}
 var state = {};
 
 $(document).ready(function () {
-    var $users = $('#users');
+    var users_div = $('#users');
 
     // GET request example -- get list of all members
     $.ajax({
@@ -14,7 +14,11 @@ $(document).ready(function () {
             // data is list of member
             // list out each member in the list
             for(i = 0; i < data.length; i++) {
-                $users.append(data[i]['id'] + ': ' + data[i]['name'] + "<br>")
+                users_div.append(data[i]['id'] + ': ' + data[i]['name'] + "<br>")
+            }
+            // If the data returned has a length of zero
+            if (!data.length) {
+                users_div.append("No users found.")
             }
         }
     });
