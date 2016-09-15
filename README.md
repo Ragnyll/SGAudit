@@ -12,7 +12,7 @@ This Django application runs of Python 2.7.
   pip install -r requirements.txt
 ```
 
-### Configuring the Django Server and the Restful Services ###
+### Configuring the Django Server and the Authorizing Applications ###
 After the requirements have been installed, from SGAudit/ run
 `python manage.py createsuperuser` and create an admin account. Then run:
 `python manage.py runserver`.
