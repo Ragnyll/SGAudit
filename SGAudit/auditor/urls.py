@@ -3,6 +3,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from auditor import views
 
 urlpatterns = [
+
         url(r'^teams/$', views.team_list.as_view()),
         url(r'^teams/(?P<pk>[0-9]+)/$', views.team_detail.as_view()),
 

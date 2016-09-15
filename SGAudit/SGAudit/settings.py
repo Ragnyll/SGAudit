@@ -41,10 +41,30 @@ INSTALLED_APPS = [
     # installed frameworks
     'rest_framework',
     'corsheaders',
+    'oauth2_provider',
+    'rest_framework_docs',
 
     # my installed apps
     'auditor',
 ]
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
+REST_FRAMEWORK_DOCS = {
+    'HIDE_DOCS': False
+}
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,3 +155,4 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8001'
 )
 CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True

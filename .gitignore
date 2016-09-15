@@ -26,3 +26,7 @@ include/
 
 # pyc files
 SGAudit/**/*.pyc
+
+# specific files
+token.txt
+application_registrations.txt
