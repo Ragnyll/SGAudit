@@ -72,7 +72,7 @@ did check out the below links:
 
 [Django Rest Framework](http://www.django-rest-framework.org/api-guide/generic-views/)
 : This is probably the single most useful page of the DRF docs. The rest is
-a painful read, that while useful, will probably give you Headaches.
+a painful read, that while useful, will probably give you headaches.
 
 [Oauth2](http://django-oauth-toolkit.readthedocs.io/en/latest/rest-framework/rest-framework.html)
 : This is the simplest Oauth2 tutorial/explanation that I found. It's also super
