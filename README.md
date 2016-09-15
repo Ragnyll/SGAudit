@@ -50,7 +50,7 @@ request header.
 Cool. The Djano Rest API is now fully running and secure.
 
 #### The API docs ####
-The docs have a nice little tool accessible at http://localhost:8000/docs .a
+The docs have a nice little tool accessible at `http://localhost:8000/docs`.
 Once again localhost is only relevant if you are using localhost.
 is a nice explanation of the database relations and the what is needed for
 every api call. There is also a little tool inside it to run test api calls.
