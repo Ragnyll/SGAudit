@@ -62,6 +62,10 @@ REST_FRAMEWORK = {
     )
 }
 
+REST_FRAMEWORK_DOCS = {
+    'HIDE_DOCS': False
+}
+
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
