@@ -37,9 +37,9 @@ Record the client_id and client_secret in some external notepad, you will need
 those in the next step.
 
 Next you're gonna want an auth token for the client application. In order to get
-that run the below curl command and replace <user_name> , <password>, client_id,
-an client_secret with the corresponding credentials (you should have received
-client_id and client_secret in the previous step):
+that run the below curl command and replace `<user_name>` , `<password>`,
+`client_id`, and `client_secret` with the corresponding credentials (you should 
+have received client_id and client_secret in the previous step):
 ```
   curl -X POST -d "grant_type=password&username=<user_name>&password=<password>" -u"<client_id>:<client_secret>" http://localhost:8000/o/token/ > token.txt
 ```
