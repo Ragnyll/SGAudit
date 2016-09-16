@@ -29,3 +29,6 @@ SGAudit/**/*.pyc
 
 # secret settings!
 secret_settings.*
+
+#npm
+*.log
