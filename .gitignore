@@ -26,3 +26,6 @@ include/
 
 # pyc files
 SGAudit/**/*.pyc
+
+# secret settings!
+secret_settings.*
