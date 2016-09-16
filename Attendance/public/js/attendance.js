@@ -14,6 +14,7 @@ var { Router,
       Link,
       History } = ReactRouter;
 
+
 var App = React.createClass({
     render: function() {
         return (
@@ -29,9 +30,7 @@ var HomeView = React.createClass({
     render: function() {
         return (
             <div>
-              <Link to="/login">
-                <a className="waves-effect waves-light btn-large"><i className="material-icons left">vpn_key</i>LOG IN</a>
-              </Link>
+              <a href='#/login' className="waves-effect waves-light btn-large"><i className="material-icons left">vpn_key</i>LOG IN</a>
 
               <div className="muted">
                 <br />
@@ -40,9 +39,7 @@ var HomeView = React.createClass({
                 <br />
               </div>
 
-              <Link to="/register">
-                <a className="waves-effect waves-light btn-large"><i className="fa fa-user-plus">&nbsp;&nbsp;</i>REGISTER WITH SIG-GAME</a>
-              </Link>
+              <a href='#/register' className="waves-effect waves-light btn-large"><i className="fa fa-user-plus">&nbsp;&nbsp;</i>REGISTER WITH SIG-GAME</a>
             </div>
         )
     }
@@ -126,34 +123,44 @@ var UserRegisterView = React.createClass({
     render: function() {
         return (
                 <div>
-                  <a className="waves-effect waves-light btn-large" onClick={this.history.goBack}>GO BACK</a>
+                  <a className="waves-effect waves-light btn-large"
+                    onClick={this.history.goBack}>GO BACK
+                  </a>
                   <h1>Hey, Welcome to SIG-Game!</h1>
-                  <h5>In order to get you in our system, we need a bit of information from you:</h5>
+                  <h5>In order to get you in our system, we need a bit of
+                    information from you:
+                  </h5>
                   <br />
                   <br />
                   <div className="row card">
                     <form className="col s12">
                       <div className="row">
-                        <div className="input-field col s3">
+                        <div className="input-field col s4 m2">
                           <input id="first_name" type="text" className="validate" />
-                          <label for="first_name">First Name</label>
+                          <label >First Name</label>
                         </div>
-                        <div className="input-field col s3">
+                        <div className="input-field col s4 m2">
                           <input id="last_name" type="text" className="validate" />
-                          <label for="last_name">Last Name</label>
+                          <label >Last Name</label>
                         </div>
-                        <div className="input-field col s3">
+                        <div className="input-field col s4 m3">
                           <input id="email" type="email" className="validate" />
-                          <label for="email">Email Address</label>
+                          <label >Email Address</label>
                         </div>
-                        <div className="input-field col s3">
-                          <input id="competing" type="checkbox" className="validate" />
-                          <label for="competing">Planning on Competing in MegaMinerAI?</label>
+                        <div className="input-field col s6 m3">
+                          <input id="competing" type="checkbox" className="filled-in" />
+                          <label htmlFor="competing">Planning on Competing
+                            in MegaMinerAI?
+                          </label>
                         </div>
+
+                      <div className="input-field col s6 m2">
+                        PUT TEAM SELECTOR HERE
                       </div>
-                    </form>
-                  </div>
+                    </div>
+                  </form>
                 </div>
+              </div>
         )
     }
 })
@@ -192,12 +199,16 @@ function getAuthToken() {
     return new Promise(function(resolve, reject) {
         var token = '';
 
-        // If the cookie is not undefined, 'undefined', it exists, so
-        if (getCookie('AUTH_TOKEN') != 'undefined' &&
-            getCookie('AUTH_TOKEN') != undefined) {
-            console.log("Found AUTH_TOKEN cookie, not getting a new one")
-            token = getCookie('AUTH_TOKEN')
-            console.log("COOKIE: " + token)
+        var current_cookie_token = getCookie('AUTH_TOKEN')
+
+        // cookie is not undefined, so it must exist, and we dont need to fetch
+        // a new token
+        if (current_cookie_token != undefined &&
+            current_cookie_token != 'undefined') {
+            console.log("Found AUTH_TOKEN cookie, not getting a new one");
+            token = current_cookie_token;
+            console.log("COOKIE: " + token);
+            resolve(token);
         }
         // Otherwise, the cookie doesn't exist, so we must fetch a new token
         else {
@@ -209,31 +220,37 @@ function getAuthToken() {
                 async: true
                 // got the token back, so update the variable for return
             }).done(function(data) {
-                token = data
-                console.log("TOKEN:  " + token)
+                token = data;
+                console.log("TOKEN:  " + token);
+                resolve(token);
             });
         }
-        resolve(token)
+
     })
 }
 
-// Fetches from the Auditor API at a specified endpoint, and resolves the results
+// Fetches from the Auditor API at a specified endpoint, and resolves the
+// results
 function fetchFromAPI(endpoint, method) {
     return new Promise(function(resolve, reject) {
         console.log("Attempting to fetch from " + endpoint)
 
         getAuthToken().then(function(token) {
-            // fetch from api now using the second cURL
-            // curl -H "Authorization: Bearer <aut_token>" http://localhost:8000/members/ > error.html
             console.log("Got token...")
+
             var result = {}
+
+            // We have our auth token, so we need to now use that token to
+            // authenticate and access the auditor API to get back the results
+            // we asked for at endpoint with method
             $.ajax({
                 type: method,
                 url: 'http://simington.io' + endpoint,
                 dataType: 'json',
                 async: true,
                 beforeSend: function(request) {
-                    request.setRequestHeader("Authorization", 'Bearer ' + token)
+                    request.setRequestHeader("Authorization",
+                                             'Bearer ' + token)
                 }
             }).done(function(data) {
                 console.log("GOT BACK THE FOLLOWING FROM " + endpoint)
