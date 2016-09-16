@@ -2,10 +2,15 @@ a {
     color: #00B7FF;
 }
 
+.card {
+    padding: 10px;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     /* bottom = footer height */
     padding: 50px;
+    background-color: #AAC0AA;
 }
 
 nav {
