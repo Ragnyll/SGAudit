@@ -11,7 +11,8 @@ var { Router,
       Route,
       IndexRoute,
       IndexLink,
-      Link } = ReactRouter;
+      Link,
+      History } = ReactRouter;
 
 var App = React.createClass({
     render: function() {
@@ -50,9 +51,10 @@ var HomeView = React.createClass({
 
 // 'Login' View -- list of all users registered; user selects their name
 var UserLoginView = React.createClass({
+    mixins: [History],
     componentWillMount() {
         var result = {}
-        fetchFromAPI("/members/").then(function(members) {
+        fetchFromAPI("/members/", "GET").then(function(members) {
             var table = document.getElementById('users-table');
 
             // Loop over every member that got returned
@@ -86,6 +88,7 @@ var UserLoginView = React.createClass({
     render: function() {
         return (
                 <div>
+                  <a className="waves-effect waves-light btn-large" onClick={this.history.goBack}>GO BACK</a>
                   <h3>Find Your Name Below:</h3>
                   <hr />
                   <table id="users-table" className="striped">
@@ -116,9 +119,41 @@ var UserDetailView = React.createClass({
 
 // 'Register' View -- takes in information about the user
 var UserRegisterView = React.createClass({
+    mixins: [History],
+    componentWillMount() {
+        console.log("TRYNA REGISTER")
+    },
     render: function() {
         return (
-            <h1>UserRegisterView</h1>
+                <div>
+                  <a className="waves-effect waves-light btn-large" onClick={this.history.goBack}>GO BACK</a>
+                  <h1>Hey, Welcome to SIG-Game!</h1>
+                  <h5>In order to get you in our system, we need a bit of information from you:</h5>
+                  <br />
+                  <br />
+                  <div className="row card">
+                    <form className="col s12">
+                      <div className="row">
+                        <div className="input-field col s3">
+                          <input id="first_name" type="text" className="validate" />
+                          <label for="first_name">First Name</label>
+                        </div>
+                        <div className="input-field col s3">
+                          <input id="last_name" type="text" className="validate" />
+                          <label for="last_name">Last Name</label>
+                        </div>
+                        <div className="input-field col s3">
+                          <input id="email" type="email" className="validate" />
+                          <label for="email">Email Address</label>
+                        </div>
+                        <div className="input-field col s3">
+                          <input id="competing" type="checkbox" className="validate" />
+                          <label for="competing">Planning on Competing in MegaMinerAI?</label>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
         )
     }
 })
@@ -183,7 +218,7 @@ function getAuthToken() {
 }
 
 // Fetches from the Auditor API at a specified endpoint, and resolves the results
-function fetchFromAPI(endpoint) {
+function fetchFromAPI(endpoint, method) {
     return new Promise(function(resolve, reject) {
         console.log("Attempting to fetch from " + endpoint)
 
@@ -193,7 +228,7 @@ function fetchFromAPI(endpoint) {
             console.log("Got token...")
             var result = {}
             $.ajax({
-                type: "GET",
+                type: method,
                 url: 'http://simington.io' + endpoint,
                 dataType: 'json',
                 async: true,
