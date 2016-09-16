@@ -18,6 +18,14 @@ router.get('/', function(req, res, next) {
     res.render("attendance")
 });
 
+router.get('/clearcookies', function(req, res, next) {
+    res.cookie('AUTH_TOKEN', undefined).redirect('/cookies')
+});
+
+router.get('/cookies', function(req, res, next) {
+    res.send("COOKIES: " + JSON.stringify(req.cookies))
+});
+
 // Requests a new auth token from the auditor server
 router.get('/token/', function(req, res, next) {
     var token_cookie = req.cookies['AUTH_TOKEN']
