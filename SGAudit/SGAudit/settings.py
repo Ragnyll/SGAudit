@@ -50,7 +50,10 @@ INSTALLED_APPS = [
 
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'},
+
+    # A token will be revoked after 1 year
+    'ACCESS_TOKEN_EXPIRE_SECONDS': 31540000,
 }
 
 REST_FRAMEWORK = {
