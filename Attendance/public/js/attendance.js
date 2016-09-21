@@ -52,34 +52,44 @@ var UserLoginView = React.createClass({
     componentWillMount() {
         var result = {}
         fetchFromAPI("/members/", "GET").then(function(members) {
-            var table = document.getElementById('users-table');
+            var user_list_div = $('#user-list')
 
-            // Loop over every member that got returned
+            // for each member in the list the API returned, create a new card
+            // with data about the user
             for (var i = 0; i < members.length; i++) {
-                // need to insert at index + 1, since index 0 is the header
-                var row = table.insertRow(i + 1);
-                var presentCell = row.insertCell(0)
-                var nameCell = row.insertCell(1);
-                var competitorCell = row.insertCell(2);
-                var teamsCell = row.insertCell(3);
+                // first, append a div to the #users-list div with id #user-<i>
+                //user_list_div.append("<div id='user-" + (i + 1) + "'></div>")
+                user_list_div.append("<div class='card row' id='user-" + (i + 1) + "' ></div>")
+                var current_user = $('#user-' + (i + 1))
 
+                // mark present buttons
+                current_user.append("<div class='col s3'><a href='/mark-present/" + members[i]['id'] + "' class='waves-effect waves-light btn-large green'><span class='fa fa-check'><span></a>&nbsp;<a href='/mark-absent/" + members[i]['id'] + "' class='waves-effect waves-light btn-large red'><span class='fa fa-times'><span></a></div>")
 
-                presentCell.innerHTML = "<a href='/mark-present/" + members[i]['id'] + "' class='waves-effect waves-light btn-large green'><span class='fa fa-check'><span></a>&nbsp;<a href='/mark-absent/" + members[i]['id'] + "' class='waves-effect waves-light btn-large red'><span class='fa fa-times'><span></a>"
+                // user's name
+                current_user.append("<div class='col s3'>" + members[i]['name'] + "</div>")
 
-                nameCell.innerHTML = members[i]['name']
-
+                // competitor status
                 if (members[i]['is_competitor']) {
-                    competitorCell.innerHTML = "<span class='fa fa-check'></span>"
+                    current_user.append("<div class='col s3'><span class='fa fa-check'></span></div>")
+
                 }
                 else {
-                    competitorCell.innerHTML = "<span class='fa fa-times'></span>"
+                    current_user.append("<div class='col s3'><span class='fa fa-times'></span></div>")
+
                 }
 
-                // List all teams the user is on
-                for (var j = 0; j < members[i]['on_teams'].length; j ++) {
-                    teamsCell.innerHTML += "<span class='chip'>" + members[i]['on_teams'][j] + "</span>"
+                // user's teams
+                // append initial div
+                current_user.append("<div class='col s3' id='user-teams-" + (i + 1) + "'></div>")
+
+                console.log(members[i])
+
+                for (var j = 0; j < members[i]['on_teams'].length; j++) {
+                    $('#user-teams-' + (i + 1)).append("<div class='chip'>" + members[i]['on_teams'][j] + "</div>")
                 }
             }
+
+
         })
     },
     render: function() {
@@ -87,19 +97,22 @@ var UserLoginView = React.createClass({
                 <div>
                   <a className="waves-effect waves-light btn-large" onClick={this.history.goBack}>GO BACK</a>
                   <h3>Find Your Name Below:</h3>
-                  <hr />
-                  <table id="users-table" className="striped">
-                    <thead id="users-thead">
-                      <tr id="users-thead-row">
-                        <th data-field="mark-attendance">Present?</th>
-                        <th data-field="name">Name</th>
-                        <th data-field="competitor">Is Competitor</th>
-                        <th data-field="teams">On Teams</th>
-                      </tr>
-                    </thead>
-                    <tbody id="users-tbody">
-                    </tbody>
-                  </table>
+
+                  <div id="users-header" className="card row">
+                    <div className="col s3">
+                      Present?
+                    </div>
+                    <div className="col s3">
+                      Name
+                    </div>
+                    <div className="col s3">
+                      Is Competitor
+                    </div>
+                    <div className="col s3">
+                      On Teams
+                    </div>
+                  </div>
+                  <div id="user-list"></div>
                 </div>
         )
     }
