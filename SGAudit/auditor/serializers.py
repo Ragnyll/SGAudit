@@ -8,6 +8,8 @@ class TeamSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'members','services_used')
 
 class MemberSerializer(serializers.ModelSerializer):
+    on_teams = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = Member
         fields = ('id', 'name', 'is_competitor', 'default_email', 'on_teams', 'services_used')
