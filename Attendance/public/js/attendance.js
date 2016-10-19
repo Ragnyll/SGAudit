@@ -145,14 +145,14 @@ var UserRegisterView = React.createClass({
                   </h5>
                   <br />
                   <br />
-                  <div className="row card">
-                    <form className="col s12">
+                  <form className="col s12" action="simington.io/">
+                    <div className="row card">
                       <div className="row">
-                        <div className="input-field col s4 m2">
+                        <div className="input-field col s4 m3">
                           <input id="first_name" type="text" className="validate" />
                           <label >First Name</label>
                         </div>
-                        <div className="input-field col s4 m2">
+                        <div className="input-field col s4 m3">
                           <input id="last_name" type="text" className="validate" />
                           <label >Last Name</label>
                         </div>
@@ -166,14 +166,31 @@ var UserRegisterView = React.createClass({
                             in MegaMinerAI?
                           </label>
                         </div>
-
-                      <div className="input-field col s6 m2">
-                        PUT TEAM SELECTOR HERE
                       </div>
-                    </div>
-                  </form>
+                <div className="row">
+                  <h6>Select the Teams You Are Interested In Below:</h6>
+                  <div className="input-field col s6 m3">
+                    <input id="web-checkbox" type="checkbox" className="filled-in" />
+                    <label htmlFor="web-checkbox">Web</label>
+                  </div>
+                  <div className="input-field col s6 m3">
+                    <input id="arena-checkbox" type="checkbox" className="filled-in" />
+                    <label htmlFor="arena-checkbox">Arena</label>
+                  </div>
+                  <div className="input-field col s6 m3">
+                    <input id="game-checkbox" type="checkbox" className="filled-in" />
+                    <label htmlFor="game-checkbox">Game / Server</label>
+                  </div>
+                  <div className="input-field col s6 m3">
+                    <input id="vis-checkbox" type="checkbox" className="filled-in" />
+                    <label htmlFor="vis-checkbox">Visualizer</label>
+                  </div>
                 </div>
               </div>
+                <input type="submit" className="waves-effect waves-light btn-large" />
+            </form>
+          </div>
+
         )
     }
 })
@@ -267,6 +284,45 @@ function fetchFromAPI(endpoint, method) {
                 }
             }).done(function(data) {
                 console.log("GOT BACK THE FOLLOWING FROM " + endpoint)
+                console.log(data)
+                result = data
+                resolve(result)
+            })
+        });
+    });
+}
+
+
+function createNewMember(name, is_competitor, email, on_teams, services_used) {
+    return new Promise(function(resolve, reject) {
+        getAuthToken().then(function(token) {
+            console.log("Got token...")
+
+            var result = {}
+
+            // We have our auth token, so we need to now use that token to
+            // authenticate and access the auditor API to get back the results
+            // we asked for at endpoint with method
+
+            var new_member = {
+                name: name,
+                is_competitor: is_competitor,
+                default_email: email,
+                on_teams: on_teams,
+                services_used: services_used
+            }
+            $.ajax({
+                type: "POST",
+                url: 'http://simington.io/members/',
+                dataType: 'json',
+                data: new_member,
+                async: true,
+                beforeSend: function(request) {
+                    request.setRequestHeader("Authorization",
+                                             'Bearer ' + token)
+                }
+            }).done(function(data) {
+                console.log("GOT BACK THE FOLLOWING: ")
                 console.log(data)
                 result = data
                 resolve(result)

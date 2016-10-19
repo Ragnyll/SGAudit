@@ -15,6 +15,19 @@ var AUDITOR_URL = secret_settings.AUDITOR_URL
 var request = require('request');
 
 router.get('/', function(req, res, next) {
+    // Calculate age of token.  If it's too old, the server won't authorize
+    // it anymore, so we must request a new one
+    var token_age = new Date(req.cookies['TOKEN_AGE'])
+    var now = new Date()
+    var diffMs = (now - token_age); // milliseconds
+    var diffMins = ((diffMs % 86400000) % 3600000) / 60000; // minutes
+    console.log("Token is " + diffMins + " mins old")
+
+    if (diffMins >= 5) {
+        console.log("COOKIE IS OLD, GRABBING NEW ONE B")
+
+    }
+
     res.render("attendance")
 });
 
@@ -33,6 +46,7 @@ router.get('/token/', function(req, res, next) {
     // Token cookie doesn't exist -> fetch new token and save it as cookie
     if (token_cookie == undefined || token_cookie == 'undefined') {
         console.log("Auth token not found.  Creating new one.")
+        console.log(AUDITOR_URL)
         request({
             url: AUDITOR_URL + '/o/token/',
             method: 'POST',
@@ -48,6 +62,9 @@ router.get('/token/', function(req, res, next) {
         }, function(err, result) {
             // parse out the new token
             var new_token = JSON.parse(result.body)['access_token']
+            console.log(new_token)
+            // set cookie to record last time we got a token
+            res.cookie('TOKEN_AGE', new Date())
 
             // set AUTH_TOKEN cookie, and send it back as JSON
             res.cookie('AUTH_TOKEN', new_token).json(new_token)
